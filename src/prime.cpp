@@ -1,11 +1,5 @@
-//============================================================================
-// Name        : prime.cpp
-// Author      : 
-// Version     :
-// Copyright   : 
-// Description : Hello World in C++, Ansi-style
-//============================================================================
-
+#include <gmp.h>
+#include <gmpxx.h>
 #include <iostream>
 using namespace std;
 
