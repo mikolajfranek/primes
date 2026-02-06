@@ -26,5 +26,3 @@
 10. Project => Properties => C/C++ Build => Settings => Tool Settings => GCC C++ Linker => Libraries => Libraries search path => Add "/lib"
 11. Project => Properties => C/C++ Build => Settings => Tool Settings => GCC C++ Linker => General => Select Support for pthread
 
-#### running benchmark in eclipse
-1. Run => Run Configurations... => Arguments => Program arguments => Add "--benchmark_format=json"

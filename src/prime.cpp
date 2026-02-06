@@ -1,6 +1,4 @@
-#include "Factorizations/TrialDivision.h"
-#include "Resources/DataForTests.h"
-#include "Factorizations/Fermat.h"
+#include "prime.h"
 
 int main() {
 	IFactorization *factorization = new Fermat();
@@ -9,3 +7,5 @@ int main() {
 	delete factorization;
 	return 0;
 }
+// OR run benchmark macro
+// BENCHMARK_MAIN();
