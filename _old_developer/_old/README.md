@@ -5,13 +5,6 @@
 3. "make check"
 4. "sudo make install"
 
-#### install library benchmark
-1. "tar -zxvf googletest-release-1.10.0.tar.gz -C benchmark-1.5.2"
-2. "mv benchmark-1.5.2/googletest-release-1.10.0/ benchmark-1.5.2/googletest"
-3. "cmake -DCMAKE_INSTALL_PREFIX= -DCMAKE_BUILD_TYPE=Release" 
-4. "make"
-5. "make test"
-6. "sudo make install"
 
 #### configure gmp/mpfr/benchmark in eclipse
 1. Project => Properties => C/C++ Build => Environment => Add value "/include;/lib" to the PATH 

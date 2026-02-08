@@ -1,0 +1,376 @@
+\documentclass[a4paper]{book}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathabx}
+\usepackage{amsthm}
+\usepackage{beton}
+\usepackage[T1]{fontenc}
+\usepackage[polish]{babel}
+\usepackage{appendix}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{tabto}
+\usepackage{theoremref}
+\bibliographystyle{plain}
+\newtheorem{theorem}{$\diamondsuit$ Twierdzenie}
+\pagestyle{plain}
+\renewcommand{\qed}{\unskip\nobreak\quad\qedsymbol}
+\addto\captionspolish{\renewcommand{\contentsname}{Spis rzeczy}}
+\lstset{
+	basicstyle=\fontsize{8}{12}\selectfont\ttfamily,
+	columns=fullflexible,
+	tabsize=4,
+	literate=%
+		{ą}{{\k{a}}}1
+		{Ą}{{\k{A}}}1
+		{ć}{{\'c}}1
+		{Ć}{{\'{C}}}1
+		{ę}{{\k{e}}}1
+		{Ę}{{\k{E}}}1
+		{ł}{{\l{}}}1
+		{Ł}{{\L{}}}1
+		{ń}{{\'n}}1
+		{Ń}{{\'N}}1
+		{ó}{{\'o}}1
+		{Ó}{{\'O}}1
+		{ś}{{\'s}}1
+		{Ś}{{\'S}}1
+		{ż}{{\.z}}1
+		{Ż}{{\.Z}}1
+		{ź}{{\'z}}1
+		{Ź}{{\'Z}}1
+}
+\title{Liczby pierwsze}
+\author{Mikołaj Franek}
+\date{}
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+%---------------------------------------------- SPIS TREŚCI ----------------------------------------------
+\tableofcontents
+
+%---------------------------------------------- PRZEDMOWA ----------------------------------------------
+\chapter*{Przedmowa}
+\addcontentsline{toc}{chapter}{Przedmowa}
+%TODO
+
+%---------------------------------------------- OZNACZENIA ----------------------------------------------
+\chapter*{Oznaczenia}
+\addcontentsline{toc}{chapter}{Oznaczenia} 
+W niniejszej pracy stosowane są następujące oznaczenia:
+\\
+\begin{itemize}[nosep, leftmargin=*]
+\item $\qedsymbol$ - koniec dowodu, 
+\item $C$ - zbiór liczb zespolonych,
+\item $M$ - zbiór liczb naturalnych dodatnich,
+\item $N$ - zbiór liczb naturalnych,
+\item $P$ - zbiór liczb pierwszych,
+\item $Q$ - zbiór liczb wymiernych,
+\item $R$ - zbiór liczb rzeczywistych,
+\item $S$ - zbiór niewiadomych,
+\item $T$ - zbiór liczb pierwszych nieparzystych,
+\item $U$ - zbiór liczb niewymiernych,
+\item $V$ - zbiór wektorów,
+\item $X$ - zbiór niewiadomych,
+\item $Y$ - zbiór niewiadomych,
+\item $Z$ - zbiór liczb całkowitych,
+\item $(c_0, c_1, ...)$ - liczby ze zbioru $C$,
+\item $(m_0, m_1, ...)$ - liczby ze zbioru $M$,
+\item $(n_0, n_1, ...)$ - liczby ze zbioru $N$,
+\item $(p_0, p_1, ...)$ - liczby ze zbioru $P$,
+\item $(q_0, q_1, ...)$ - liczby ze zbioru $Q$,
+\item $(r_0, r_1, ...)$ - liczby ze zbioru $R$,
+\item $(s_0, s_1, ...)$ - niewiadome,
+\item $(t_0, t_1, ...)$ - liczby ze zbioru $T$,
+\item $(u_0, u_1, ...)$ - liczby ze zbioru $U$,
+\item $(v_0, v_1, ...)$ - wektory,
+\item $(x_0, x_1, ...)$ - niewiadome,
+\item $(y_0, y_1, ...)$ - niewiadome,
+\item $(z_0, z_1, ...)$ - liczby ze zbioru $Z$,
+\item $r_0 \mid r_1$ - $r_0$ dzieli bez reszty $r_1$,
+\item $r_0 \nmid r_1$ - $r_0$ nie dzieli bez reszty $z_1$,
+\item $\lfloor r_0 \rfloor$ - największa $z_0$ nie większa od $r_0$,
+\item $\lceil r_0 \rceil$ - najmniejsza $z_0$ nie mniejsza od $r_0$,
+\item $\pi(r_0)$ - liczba liczb pierwszych nie większych od $r_0$,
+\item $\#X$ - liczba elementów zbioru $X$,
+\item $v_0[n_0]$ - element na pozycji $n_0$ w $v_0$,
+\item $\ldbrack x_0, x_1 \rdbrack$ - para niewiadomych,
+\item $\ldbrack x_0, x_1, ..., x_{n_0 - 1}, x_{n_0} \rdbrack$ - skończony ciąg niewiadomych,
+\item $\ldbrack x_0, x_1, ...\rdbrack$ - nieskończony ciąg niewiadomych,
+\item $sgn(x_0) = \begin{cases} \mbox{1,} & \mbox{gdy } x_0 > 0 \\ \mbox{0,} & \mbox{gdy } x_0 = 0 \\ \mbox{-1,} & \mbox{gdy } x_0 < 0 \end{cases}$
+\item $(f_0(x_0, x_1, ..., x_{n_0 - 1}, x_{n_0}), f_1(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}), ...)$ - funkcje względem niewiadomych,
+\item $(g_0(x_0, x_1, ..., x_{n_0 - 1}, x_{n_0}), g_1(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}), ...)$ - funkcje względem niewiadomych,
+\item $(h_0(x_0, x_1, ..., x_{n_0 - 1}, x_{n_0}), h_1(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}), ...)$ - funkcje względem niewiadomych,
+\item $nwd(z_0, z_1, ..., z_{m_0 - 1}, z_{m_0})$ - największa $m_1$, dla której $m_1 \mid z_0, m_1 \mid z_1, ..., m_1 \mid z_{m_0 - 1}, m_1 \mid z_{m_0}$, gdzie przynajmniej jedna $(z_0, z_1, ..., z_{m_0 - 1}, z_{m_0})$ jest różna od zera,
+\item $nww(z_0, z_1, ..., z_{m_0 - 1}, z_{m_0})$ - najmniejsza $m_1$, dla której $z_0 \mid m_1, z_1 \mid m_1, ..., z_{m_0 - 1} \mid m_1, z_{m_0} \mid m_1$, gdzie $(z_0, z_1, ..., z_{m_0 - 1}, z_{m_0})$ są różne od zera,
+\item $(w_0(x_0, x_1, ..., x_{n_0 - 1}, x_{n_0}), w_1(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}), ...)$ - wielomiany względem niewiadomych,
+\end{itemize}
+\newpage
+\thispagestyle{empty}
+
+%---------------------------------------------- FAKTORYZACJA ----------------------------------------------
+\chapter{Faktoryzacja}
+
+%_________________ PRÓBNE DZIELENIE _________________
+\section{Próbne dzielenie}
+\noindent\rule{\textwidth}{0.1pt}
+\begin{lstlisting}[mathescape=true]
+wejście: $m_0 \geq 10^{20}$
+wyjście: $m_1, m_2$ - dzielniki $m_0 = m_1m_2$, gdzie $m_1 \leq m_2$
+
+jeśli $2 \mid m_0$ to 
+	koniec: $m_1 = 2$, $m_2 = \frac{m_0}{2}$
+jeśli $3 \mid m_0$ to 
+	koniec: $m_1 = 3$, $m_2 = \frac{m_0}{3}$
+$m_3 = \lfloor \sqrt{m_0} \rfloor$
+wykonuj dla $m_4 = 5$ dopóki $m_4 \leq m_3$ aktualizując co krok $m_4 = m_4 + 4$ 
+	jeśli $m_4 \mid m_0$ to
+		koniec: $m_1 = m_4$, $m_2 = \frac{m_0}{m_4}$
+	$m_4 = m_4 + 2$
+	jeśli $m_4 \mid m_0$ to 
+		koniec: $m_1 = m_4$, $m_2 = \frac{m_0}{m_4}$
+koniec: $m_1 = 1$, $m_2 = m_0$
+\end{lstlisting}
+\noindent\rule{\textwidth}{0.1pt}
+\\
+
+Wykonanie prób dzielenia $m_0$ przez liczby $2$, $3$, a następnie przez liczby postaci $6m_5 \mp 1$ pozwala odszukać dzielniki $m_0$. 
+
+Liczba kroków algorytmu to $r_0 \approx \frac{\sqrt{m_0}}{3}$. Natomiast, niezbędna liczba kroków algorytmu wynosi $r_1 \approx \frac{\sqrt{m_0}}{ln(\sqrt{m_0})}$, a więc $\frac{r_0}{r_1} \approx \frac{ln(\sqrt{m_0})}{3}$ ukazuje ile razy więcej kroków algorytmu zostanie wykonanych.
+\newpage
+
+%_________________ FERMAT _________________
+\section{Fermat}
+\noindent\rule{\textwidth}{0.1pt}
+\begin{lstlisting}[mathescape=true]
+wejście: $m_0 \geq 10^{20}$
+wyjście: $m_1, m_2$ - dzielniki $m_0 = m_1m_2$, gdzie $m_1 \leq m_2$
+
+jeśli $2 \mid m_0$ to
+	koniec: $m_1 = 2$, $m_2 = \frac{m_0}{2}$
+$m_3 = \lceil \sqrt{m_0} \rceil$
+$n_0 = (m_3)^2 - m_0$
+$r_0 = \sqrt{n_0}$
+wykonuj dopóki $r_0 \notin N$
+	$n_0 = n_0 + 2m_3 + 1$
+	$r_0 = \sqrt{n_0}$
+	$m_3 = m_3 + 1$
+koniec: $m_1 = m_3 - r_0$, $m_2 = m_3 + r_0$
+\end{lstlisting}
+\noindent\rule{\textwidth}{0.1pt}
+\\
+
+Z $m_0 = (m_3)^2 - (r_0)^2$ wynika $(r_0)^2 = (m_3)^2 - m_0$, a więc znalezienie $m_3$, dla której $r_0 \in N$ pozwala odszukać dzielniki $m_0$. 
+
+Liczba kroków algorytmu to $\frac{m_1 + m_2}{2} - \lceil \sqrt{m_0} \rceil \approx \frac{(\sqrt{m_1} - \sqrt{m_2})^2}{2} \approx \frac{(m_1 - \sqrt{m_0})^2}{2m_1}$, gdzie $m_3 = \lceil \sqrt{m_0} \rceil$ jest wartością początkową, $m_3 = \frac{m_1 + m_2}{2}$ jest wartością końcową. Jeśli $m_1 = r_1\sqrt{m_0}$ to liczba kroków algorytmu przedstawia się w postaci $\frac{(r_1-1)^2}{2r_1}\sqrt{m_0}$, gdzie $0 < r_1 < 1$, co ukazuje, że algorytm jest niepraktyczny dla $r_1 < \frac{4 - \sqrt{7}}{3}$ osiągając większą liczbę kroków algorytmu niż $\frac{\sqrt{m_0}}{3}$.
+
+\newpage
+
+%_________________ SITO KWADRATOWE _________________
+\section{Sito kwadratowe}
+
+%---------------------------------------------- OTWARTE PROBLEMY MATEMATYKI ----------------------------------------------
+\chapter{Otwarte problemy matematyki}
+
+%############################################## DODATKI ##############################################
+\begin{appendices}
+
+%---------------------------------------------- DODATEK TEORIA ----------------------------------------------
+\chapter{Teoria}
+%_________________ PODSTAWOWE POJĘCIA _________________
+\section{Podstawowe pojęcia}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Jeśli $r_0 \mid r_1, r_0 \mid r_2$ to $r_0 \mid (r_1 \pm r_2)$.
+\begin{proof}
+Z $r_1 = z_0r_0, r_2 = z_1r_0$ wynika $r_1 \pm r_2 = r_0(z_0 \pm z_1)$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Jeśli $r_0 \mid r_1, r_1 \mid r_2$ to $r_0 \mid r_2$.
+\begin{proof}
+Z $r_1 = z_0r_0, r_2 = z_1r_1$ wynika $r_2 = z_1z_0r_0$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Jeśli $r_0 \mid r_1$ to $r_0 \mid z_0r_1$.
+\begin{proof}
+Z $r_0 \mid r_1, r_1 \mid z_0r_1$ wynika $r_0 \mid z_0r_1$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref1}
+Jeśli $r_0 \mid r_1, r_1 \neq 0$ to $|r_0| \leq |r_1|$.
+\begin{proof}
+Z $z_0 = \frac{r_1}{r_0}$ wynika $|z_0| \geq 1$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref4}
+Jeśli $r_0 \mid r_1, r_1 \mid r_0$ to $r_0 = \pm r_1$.
+\begin{proof}
+Zastosowanie \textbf{Twierdzenie \ref{podstawowe_pojecia_ref1}.} ukazuje $|r_0| = |r_1|$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref7}
+Istnieją $(x_0, x_1, y_0, y_1) \in Z$, dla których $z_0 = z_1x_0 + x_1 = z_1y_0 + y_1$, gdzie $z_1 \neq 0, 0 \leq x_1 < |z_1|, 0 \leq y_1 \leq \frac{|z_1|}{2}$. Ponadto $(x_0, x_1)$ są jednoznacznie wyznaczone przez $(z_0, z_1)$.
+\begin{proof}
+Niech $x_0 = \lfloor \frac{z_0}{z_1} \rfloor, x_1 = z_0 - z_1x_0$. Jeśli $z_1 > 0$ to z $x_0 \leq \frac{z_0}{z_1} < x_0 + 1$ wynika $z_1x_0 \leq z_0 < z_1x_0 + z_1$ ukazując $0 \leq x_1 < z_1$. Jeśli $z_1 < 0$ to z $x_0 \leq \frac{z_0}{z_1} < x_0 + 1$ wynika $z_1x_0 \geq z_0 > z_1x_0 + z_1$ ukazując $0 \geq x_1 > z_1$. Jeśli $0 \leq x_1 \leq \frac{|z_1|}{2}$ to $y_0 = x_0, y_1 = x_1$. Jeśli $\frac{|z_1|}{2} < x_1 < |z_1|$ to z $|x_1 - |z_1|| \leq \frac{|z_1|}{2}, z_0 = z_1x_0 + |z_1| + (x_1 - |z_1|)$ wynika $y_0 = x_0 + 1, y_1 = x_1 - |z_1|$ dla $z_1 > 0$ oraz $y_0 = x_0 - 1, y_1 = x_1 - |z_1|$ dla $z_1 < 0$. Niech $z_0 = z_1x_0 + x_1 = z_1x_2 + x_3$, gdzie $(x_2, x_3) \in Z, 0 \leq x_3 < |z_1|, x_1 \neq x_3$, wówczas $z_1(x_0 - x_2) = x_3 - x_1 \neq 0$, a więc z $z_1 \mid (x_3 - x_1)$ wynika $|z_1| \leq |x_3 - x_1|$, ale $0 \leq (x_1, x_3) < |z_1|$ ukazuje $|x_3 - x_1| < |z_1|$, sprzeczność. Zatem $x_0 = x_2, x_1 = x_3$ są jednoznacznie wyznaczone przez $(z_0, z_1)$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Jeśli $q_0 = \frac{z_0}{z_1} \neq 0, z_0$ jest najmniejszą wartością bezwzględną przedstawienia $q_0 = \frac{z_0}{z_1}$ to z $q_0 = \frac{x_0}{x_1}$, gdzie $(x_0, x_1) \in Z$ wynika $z_0 \mid x_0, z_1 \mid x_1$.
+\begin{proof}
+Jeśli $z_0 \nmid x_0$ to $x_0 = y_0z_0 + y_1$, gdzie $(y_0, y_1) \in Z, 0 < y_1 < |z_0|$, wówczas z $q_0 = \frac{z_0}{z_1} = \frac{x_0}{x_1} = \frac{y_0z_0 + y_1}{x_1}$ wynika $z_0 = \frac{y_1z_1}{x_1 - y_0z_1}$, a więc $q_0 = \frac{y_1}{x_1 - y_0z_1}$, sprzeczność ze względu na $y_1 < |z_0|$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Każda $q_0 \neq 0$ przedstawia się jednoznacznie w postaci $q_0 = \frac{z_0}{m_0}$, gdzie $nwd(z_0, m_0) = 1$.
+\begin{proof}
+Niech $q_0 = \frac{z_1}{m_1}, z_1$ jest najmniejszą wartością bezwzględną przedstawienia $q_0 = \frac{z_1}{m_1}$, wówczas z $z_1 \mid z_0$ wynika $z_0 = x_0z_1$, gdzie $x_0 \in M$, a więc $m_0z_1 = z_0m_1 = x_0z_1m_1$ ukazuje $m_0 = x_0m_1$. Z $x_0 \mid z_0, x_0 \mid m_0$ wynika $x_0 = 1$, a więc $z_0 = z_1, m_0 = m_1$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref2}
+Jeśli $p_0 \mid z_0z_1$ to $p_0 \mid z_0$ lub też $p_0 \mid z_1$.
+\begin{proof}
+Niech $z_0z_1 = x_0p_0, q_0 = \frac{p_0}{z_1} = \frac{z_0}{x_0} = \frac{x_1}{y_1}, x_1$ jest najmniejszą wartością bezwzględną przedstawienia $q_0 = \frac{x_1}{y_1}$, gdzie $(x_0, x_1, y_1) \in Z$, wówczas z $x_1 | p_0$ wynika $x_1 = \pm 1$ lub $x_1 = \pm p_0$. Jeśli $x_1 = \pm 1$ to z $\frac{p_0}{z_1} = \pm \frac{1}{y_1}$ wynika $\frac{z_1}{p_0} = \pm y_1$, a więc $p_0 \mid z_1$. Jeśli $x_1 = \pm p_0$ to $p_0 \mid z_0$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref8}
+Jeśli $p_0 \mid \prod_{n_0 = 0}^{m_0}(z_{n_0})$ to $p_0 \mid z_0$ lub też $p_0 \mid z_1$ lub też ... lub też $p_0 \mid z_{m_0 - 1}$ lub też $p_0 \mid z_{m_0}$.
+\begin{proof}
+Jeśli $m_0 = 1$ to z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref2}.} wynika $p_0 \mid z_0$ lub też $p_0 \mid z_1$. Niech $p_0 \mid \prod_{n_0 = 0}^{m_1}(z_{n_0})$, wówczas $p_0 \mid z_0$ lub też $p_0 \mid z_1$ lub też ... lub też $p_0 \mid z_{m_1 - 1}$ lub też $p_0 \mid z_{m_1}$ (założenie indukcyjne). Jeśli $p_0 \mid \prod_{n_0 = 0}^{m_1 + 1}(z_{n_0})$ to $p_0 \mid z_0$ lub też $p_0 \mid z_1$ lub też ... lub też $p_0 \mid z_{m_1}$ lub też $p_0 \mid z_{m_1 + 1}$ (teza indukcyjna). Jeśli $p_0 \mid \prod_{n_0 = 0}^{m_1 + 1}(z_{n_0}) = z_0(\prod_{n_0 = 1}^{m_1 + 1}(z_{n_0}))$ to z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref2}.} wynika $p_0 \mid z_0$ lub też $\prod_{n_0 = 1}^{m_1 + 1}(z_{n_0})$, co prowadzi do $p_0 \mid z_0$ lub też $p_0 \mid z_1$ lub też ... lub też $p_0 \mid z_{m_1}$ lub też $p_0 \mid z_{m_1 + 1}$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref3}
+Każda $m_0 > 1$ przedstawia się w postaci $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0})$.
+\begin{proof}
+Jeśli $m_0 = 2$ to $p_0 = 2, n_1 = 0$. Niech $m_1 > 1$ przedstawia się w postaci $m_1 = \prod_{n_0 = 0}^{n_2}(p_{n_0})$ (założenie indukcyjne). Każda $m_2 = m_1 + 1$ przedstawia się w postaci $m_2 = \prod_{n_0 = 0}^{n_3}(p_{n_0})$ (teza indukcyjna). Jeśli $m_2$ jest liczbą pierwszą to $p_0 = m_2, n_1 = 0$. Natomiast, jeśli $m_2$ jest liczbą złożoną to $m_2 = m_3m_4$, gdzie $1 < (m_3, m_4) < m_2$, wówczas $m_3 = \prod_{n_0 = 0}^{n_4}(p_{n_0}), m_4 = \prod_{n_0 = n_4 + 1}^{n_5}(p_{n_0})$, co prowadzi do $m_2 = \prod_{n_0 = 0}^{n_5}(p_{n_0})$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Każda złożona $m_0$ posiada najmniejszy dzielnik pierwszy nieprzekraczający $\sqrt{m_0}$.
+\begin{proof}
+Niech $p_0$ jest najmniejszym dzielnikiem pierwszym $m_0$, wówczas $m_1 = \frac{m_0}{p_0}$, a więc z $m_1 \mid m_0$ wynika $p_0 \leq m_1 = \frac{m_0}{p_0}$ co ukazuje $p_0 \leq \sqrt{m_0}$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Każda $m_0 > 1$ przedstawia się w postaci $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0}^{x_{n_0}})$, gdzie $(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}) \in M, (p_0, p_1, ..., p_{n_1 - 1}, p_{n_1})$ są różnymi liczbami pierwszymi.
+\begin{proof}
+Połączenie jednakowych czynników pierwszych z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref3}.} ukazuje $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0}^{x_{n_0}})$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Istnieją $(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}) \in Z$, dla których $\sum_{n_0 = 0}^{n_1}(z_{n_0}x_{n_0}) = nwd(z_0, z_1, ..., z_{n_1 - 1}, z_{n_1})$. Ponadto $nwd(z_0, z_1, ..., z_{n_1 - 1}, z_{n_1})$ jest najmniejszą liczbą dającą się przedstawić w postaci $\sum_{n_0 = 0}^{n_1}(z_{n_0}x_{n_0}) = nwd(z_0, z_1, ..., z_{n_1 - 1}, z_{n_1})$.
+\begin{proof}
+Niech $y_0 = nwd(z_0, z_1, ..., z_{n_1 - 1}, z_{n_1}), S$ jest zbiorem wszystkich liczb dających się przedstawić w postaci $\sum_{n_0 = 0}^{n_1}(z_{n_0}x_{n_0}) = nwd(z_0, z_1, ..., z_{n_1 - 1}, z_{n_1}), m_0$ jest najmniejszą liczbą zawartą w $S$. Jeśli $s_0 \in S$ to $y_1s_0 \in S$, gdzie $y_1 \in Z$. Jeśli $(s_1, s_2) \in S$ to $(s_1 \pm s_2) \in S$. Zatem z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref7}.} wynika $m_0 \mid (z_0, z_1, ..., z_{n_1 - 1}, z_{n_1})$, a więc $m_0 \leq y_0$. Każda liczba zawarta w $S$ jest podzielna przez $y_0$, co w szczególności prowadzi do $y_0 \mid m_0$, wówczas z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref4}.} wynika $y_0 = \pm m_0$, ale $(y_0, m_0) > 0$ ukazuje $y_0 = m_0$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref5}
+Jeśli $nwd(z_0, z_1) = 1, z_0 \mid z_1z_2$ to $z_0 \mid z_2$.
+\begin{proof}
+Z $z_0x_0 + z_1x_1 = 1$, gdzie $(x_0, x_1) \in Z$ wynika, że $z_0$ dzieli $z_0z_2x_0 + z_1z_2x_1 = z_2$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref6}
+Jeśli $nwd(z_0, z_1) = 1, nwd(z_0, z_2) = 1, ..., nwd(z_0, z_{m_0 - 1}) = 1, nwd(z_0, z_{m_0}) = 1$ to $nwd(z_0,
+\prod_{n_0 = 1}^{m_0}(z_{n_0})) = 1$.
+\begin{proof}
+Niech $(x_0, x_1, ..., x_{m_0 - 1}, x_{m_0}, y_0, y_1, ..., y_{m_0 - 1}, y_{m_0}) \in Z$, wówczas wykonanie mnożenia stonami $z_{m_1}y_{m_1} = 1 - z_0x_{m_1}$ dla $1 \leq m_1 \leq m_0$ ukazuje $\prod_{n_0 = 1}^{m_0}(z_{n_0}y_{n_0}) = 1 + z_0x_0$. Jeśli $y_0 \mid z_0, y_0 \mid z_1z_2...z_{m_0 - 1}z_{m_0}$ to $y_0 \mid (1 + z_0x_0)$, co prowadzi do $y_0 = 1$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Jeśli $(z_1, z_2, ..., z_{m_0 - 1}, z_{m_0})$ są parami względnie pierwsze, każda z $(z_1, z_2, ..., z_{m_0 - 1}, z_{m_0})$ dzieli $z_0$ to $\prod_{n_0 = 1}^{m_0}(z_{n_0}) \mid z_0$.
+\begin{proof}
+Jeśli $m_0 = 1$ to $z_1 \mid z_0$. Niech $(z_1, z_2, ..., z_{m_1 - 1}, z_{m_1})$ są parami względnie pierwsze, każda z $(z_1, z_2, ..., z_{m_1 - 1}, z_{m_1})$ dzieli $z_0$, wówczas $\prod_{n_0 = 1}^{m_1}(z_{n_0}) \mid z_0$ (założenie indukcyjne). Jeśli $(z_1, z_2, ..., z_{m_1}, z_{m_1 + 1})$ są parami względnie pierwsze, każda z $(z_1, z_2, ..., z_{m_1}, z_{m_1 + 1})$ dzieli $z_0$ to $\prod_{n_0 = 1}^{m_1 + 1}(z_{n_0}) \mid z_0$ (teza indukcyjna). Przy odpowiedniej $x_0 \in Z$ jest $z_{m_1 + 1} \mid z_0 = x_0\prod_{n_0 = 1}^{m_1}(z_{n_0})$. Z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref6}.} wynika $nwd(z_{m_1 + 1}, \prod_{n_0 = 1}^{m_1}(z_{n_0})) = 1$, wówczas z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref5}.} ukazuje się $z_{m_1 + 1} \mid x_0 = \frac{z_0}{\prod_{n_0 = 1}^{m_1}(z_{n_0})}$, a więc istnieje $x_1 \in Z$ taka, że $z_{m_1 + 1}x_1 = \frac{z_0}{\prod_{n_0 = 1}^{m_1}(z_{n_0})}$, a zatem $x_1 = \frac{z_0}{\prod_{n_0 = 1}^{m_1 + 1}(z_{n_0})}$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref9}
+Każda $m_0 > 1$ przedstawia się jednoznacznie w postaci $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0})$. Ponadto, wśród $(p_0, p_1, ..., p_{n_0 - 1}, p_{n_0})$ występuje każdy dzielnik pierwszy $m_0$.
+\begin{proof}
+Z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref3}.} wynika przedstawienie $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0})$. Jeśli $m_0 = 2$ to teza twierdzenia jest oczywista (prawdziwa). Niech $m_1 > 1$ przedstawia się jednoznacznie w postaci $m_1 = \prod_{n_0 = 0}^{n_2}(p_{n_0})$ (założenie indukcyjne). Każda $m_2 = m_1 + 1$ przedstawia się jednoznacznie w postaci $m_2 = \prod_{n_0 = 0}^{n_2}(p_{n_0})$ (teza indukcyjna). Przypuszczenie fałszywości tezy ukazuje istnienie $m_3 = \prod_{n_0 = 0}^{n_3}(p_{n_0}) = \prod_{n_0 = 0}^{n_4}(x_{n_0})$, gdzie $(x_0, x_1, ..., x_{n_4 - 1}, x_{n_4}) \in P$ jako najmniejszej liczby posiadającej dwa różne rozkłady na czynniki pierwsze. Zatem z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref8}.} wynika $\frac{m_3}{p_0} = \prod_{n_0 = 1}^{n_3}(p_{n_0}) = \prod_{n_0 = 0}^{n_5 - 1}(x_{n_0})\prod_{n_0 = n_5 + 1}^{n_4}(x_{n_0})$, gdzie $x_{n_5} = p_0$, a więc $\frac{m_3}{p_0}$ posiada dwa różne rozkłady na czynniki pierwsze, sprzeczność. Jedynym rozkładem $m_0$ na czynniki pierwsze jest $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0}) = \prod_{n_0 = 0}^{n_6}(y_{n_0})$, gdzie $(y_0, y_1, ..., y_{n_6 - 1}, y_{n_6}) \in P$, wówczas rozkładając $\frac{m_0}{y_0}$ na czynniki pierwsze ukazuje się $\frac{m_0}{y_0} = \prod_{n_0 = 1}^{n_6}(y_{n_0})$. Zatem $y_0$ musi występować wśród $(p_0, p_1, ..., p_{n_0 - 1}, p_{n_0})$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref10}
+Każda $m_0 > 1$ przedstawia się jednoznacznie w postaci $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0}^{x_{n_0}})$, gdzie $(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}) \in M, (p_0, p_1, ..., p_{n_1 - 1}, p_{n_1})$ są różnymi liczbami pierwszymi.
+\begin{proof}
+Połączenie jednakowych czynników pierwszych z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref9}.} ukazuje $m_0 = \prod_{n_0 = 0}^{n_1}(p_{n_0}^{x_{n_0}})$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref11}
+Każda $z_0 \neq (0, \pm 1)$ przedstawia się jednoznacznie w postaci $z_0 = sgn(z_0)\prod_{n_0 = 0}^{n_1}(p_{n_0}^{x_{n_0}})$, gdzie $(x_0, x_1, ..., x_{n_1 - 1}, x_{n_1}) \in M, (p_0, p_1, ..., p_{n_1 - 1}, p_{n_1})$ są różnymi liczbami pierwszymi.
+\begin{proof}
+Zastosowanie \textbf{Twierdzenie \ref{podstawowe_pojecia_ref10}.} do $\frac{z_0}{sgn(z_0)} = |z_0| = \prod_{n_0 = 0}^{n_1}(p_{n_0}^{x_{n_0}})$ ukazuje $z_0 = sgn(z_0)\prod_{n_0 = 0}^{n_1}(p_{n_0}^{x_{n_0}})$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+\thlabel{podstawowe_pojecia_ref12}
+Każda $z_0 \neq 0$ przedstawia się jednoznacznie w postaci $z_0 = sgn(z_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{x_{n_0}})$, gdzie $(x_0, x_1, ...) \in N, (p_0, p_1, ...)$ są różnymi liczbami pierwszymi, $sgn(z_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{x_{n_0}})$ posiada skończenie wiele czynników pierwszych różnych od jedności.
+\begin{proof}
+Jeśli $z_0 = \pm 1$ to $z_0 = sgn(z_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{x_{n_0}})$ przy $(x_0, x_1, ...) = 0$. Jeśli $z_0 \neq (0, \pm 1)$ to z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref11}.} wynika $z_0 = sgn(z_0)\prod_{n_0 = 0}^{n_1}(p_{n_0}^{y_{n_0}})$, gdzie $(y_0, y_1, ..., y_{n_1 - 1}, y_{n_1}) \in M$ co pozwala zapisać $z_0 = sgn(z_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{x_{n_0}}) = sgn(z_0)\prod_{n_0 = 0}^{n_1}(p_{n_0}^{y_{n_0}})\prod_{n_0 = n_1 + 1}^{\infty}(p_{n_0}^{y_{n_0}})$ przy $(y_{n_1 + 1}, y_{n_1 + 2}, ...) = 0$.
+\end{proof}
+\end{theorem}
+%@@@@@@@@@@@@@@@@@ TWIERDZENIE @@@@@@@@@@@@@@@@@
+\begin{theorem}[\cite{narkiewicz}]
+Każda $q_0 \neq 0$ przedstawia się jednoznacznie w postaci $q_0 = sgn(q_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{f_0(q_0, n_0)})$, gdzie $f_0(x_0, x_1) \in N$ jest funkcją określającą wartość wykładnika czynnika pierwszego $x_0 \in Q$ na pozycji $x_1 \in N$, $(p_0, p_1, ...)$ są różnymi liczbami pierwszymi, $sgn(q_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{f_0(q_0, n_0)})$ posiada skończenie wiele czynników pierwszych różnych od jedności.
+\begin{proof}
+Niech $q_0 = \frac{z_0}{m_0}$, wówczas z \textbf{Twierdzenie \ref{podstawowe_pojecia_ref12}.} wynika $z_0 = sgn(z_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{f_0(z_0, n_0)}),\\ m_0 = \prod_{n_0 = 0}^{\infty}(p_{n_0}^{f_0(m_0, n_0)})$, a więc $q_0 = sgn(z_0)\prod_{n_0 = 0}^{\infty}(p_{n_0}^{f_0(z_0, n_0) - f_0(m_0, n_0)})$. Różnica $f_0(z_0, n_0) - f_0(m_0, n_0)$ zależy jedynie od $q_0$, a nie od wyboru $(z_0, m_0)$. Jeśli $q_0 = \frac{z_1}{m_1}$ to $z_0m_1 = z_1m_0$, wówczas $\prod_{n_0 = 0}^{\infty}(p_{n_0}^{f_0(z_0, n_0) + f_0(m_1, n_0)}) = \prod_{n_0 = 0}^{\infty}(p_{n_0}^{f_0(z_1, n_0) + f_0(m_0, n_0)})$.
+\end{proof}
+\end{theorem}
+%TODO
+
+%_________________ KONGRUCENCJE _________________
+\section{Kongruencje}
+
+
+%---------------------------------------------- DODATEK ALGORYTMY ----------------------------------------------
+\chapter{Algorytmy}
+
+\end{appendices}
+
+%############################################## BIBLIOGRAFIA ##############################################
+\begin{thebibliography}{99}
+\bibitem{bialynicki_birula}
+Białynicki-Birula A., Algebra, ISBN: 978-83-01-15817-0
+\bibitem{mazurkiewicz}
+Mazurkiewicz S., Podstawy rachunku prawdopodobieństwa, Instytut Matematyczny Polskiej Akademii Nauk, Warszawa, 1956, Monografie Matematyczne, Tom 32
+\bibitem{narkiewicz}
+Narkiewicz W., Teoria liczb, ISBN: 83-01-14015-1
+\bibitem{riesel}
+Riesel H., Prime numbers and computer methods for factorization, ISBN: 978-0-8176-8297-2
+\bibitem{sierpinski}
+Sierpiński W., Teoria liczb, Instytut Matematyczny Polskiej Akademii Nauk, Warszawa-Wrocław, 1950, Monografie Matematyczne, Tom 19
+\bibitem{starzynski}
+Starzyński S., Atlas matematyczny, ISBN: 978-83-283-4760-1
+\end{thebibliography}
+\end{document}
