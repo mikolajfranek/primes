@@ -1,60 +1,3 @@
-\documentclass[a4paper]{book}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{mathabx}
-\usepackage{amsthm}
-\usepackage{beton}
-\usepackage[T1]{fontenc}
-\usepackage[polish]{babel}
-\usepackage{appendix}
-\usepackage{listings}
-\usepackage{enumitem}
-\usepackage{tabto}
-\usepackage{theoremref}
-\bibliographystyle{plain}
-\newtheorem{theorem}{$\diamondsuit$ Twierdzenie}
-\pagestyle{plain}
-\renewcommand{\qed}{\unskip\nobreak\quad\qedsymbol}
-\addto\captionspolish{\renewcommand{\contentsname}{Spis rzeczy}}
-\lstset{
-	basicstyle=\fontsize{8}{12}\selectfont\ttfamily,
-	columns=fullflexible,
-	tabsize=4,
-	literate=%
-		{ą}{{\k{a}}}1
-		{Ą}{{\k{A}}}1
-		{ć}{{\'c}}1
-		{Ć}{{\'{C}}}1
-		{ę}{{\k{e}}}1
-		{Ę}{{\k{E}}}1
-		{ł}{{\l{}}}1
-		{Ł}{{\L{}}}1
-		{ń}{{\'n}}1
-		{Ń}{{\'N}}1
-		{ó}{{\'o}}1
-		{Ó}{{\'O}}1
-		{ś}{{\'s}}1
-		{Ś}{{\'S}}1
-		{ż}{{\.z}}1
-		{Ż}{{\.Z}}1
-		{ź}{{\'z}}1
-		{Ź}{{\'Z}}1
-}
-\title{Liczby pierwsze}
-\author{Mikołaj Franek}
-\date{}
-\begin{document}
-\maketitle
-\thispagestyle{empty}
-
-%---------------------------------------------- SPIS TREŚCI ----------------------------------------------
-\tableofcontents
-
-%---------------------------------------------- PRZEDMOWA ----------------------------------------------
-\chapter*{Przedmowa}
-\addcontentsline{toc}{chapter}{Przedmowa}
-%TODO
-
 %---------------------------------------------- OZNACZENIA ----------------------------------------------
 \chapter*{Oznaczenia}
 \addcontentsline{toc}{chapter}{Oznaczenia} 
@@ -108,34 +51,6 @@ W niniejszej pracy stosowane są następujące oznaczenia:
 %---------------------------------------------- FAKTORYZACJA ----------------------------------------------
 \chapter{Faktoryzacja}
 
-%_________________ PRÓBNE DZIELENIE _________________
-\section{Próbne dzielenie}
-\noindent\rule{\textwidth}{0.1pt}
-\begin{lstlisting}[mathescape=true]
-wejście: $m_0 \geq 10^{20}$
-wyjście: $m_1, m_2$ - dzielniki $m_0 = m_1m_2$, gdzie $m_1 \leq m_2$
-
-jeśli $2 \mid m_0$ to 
-	koniec: $m_1 = 2$, $m_2 = \frac{m_0}{2}$
-jeśli $3 \mid m_0$ to 
-	koniec: $m_1 = 3$, $m_2 = \frac{m_0}{3}$
-$m_3 = \lfloor \sqrt{m_0} \rfloor$
-wykonuj dla $m_4 = 5$ dopóki $m_4 \leq m_3$ aktualizując co krok $m_4 = m_4 + 4$ 
-	jeśli $m_4 \mid m_0$ to
-		koniec: $m_1 = m_4$, $m_2 = \frac{m_0}{m_4}$
-	$m_4 = m_4 + 2$
-	jeśli $m_4 \mid m_0$ to 
-		koniec: $m_1 = m_4$, $m_2 = \frac{m_0}{m_4}$
-koniec: $m_1 = 1$, $m_2 = m_0$
-\end{lstlisting}
-\noindent\rule{\textwidth}{0.1pt}
-\\
-
-Wykonanie prób dzielenia $m_0$ przez liczby $2$, $3$, a następnie przez liczby postaci $6m_5 \mp 1$ pozwala odszukać dzielniki $m_0$. 
-
-Liczba kroków algorytmu to $r_0 \approx \frac{\sqrt{m_0}}{3}$. Natomiast, niezbędna liczba kroków algorytmu wynosi $r_1 \approx \frac{\sqrt{m_0}}{ln(\sqrt{m_0})}$, a więc $\frac{r_0}{r_1} \approx \frac{ln(\sqrt{m_0})}{3}$ ukazuje ile razy więcej kroków algorytmu zostanie wykonanych.
-\newpage
-
 %_________________ FERMAT _________________
 \section{Fermat}
 \noindent\rule{\textwidth}{0.1pt}
@@ -165,9 +80,6 @@ Liczba kroków algorytmu to $\frac{m_1 + m_2}{2} - \lceil \sqrt{m_0} \rceil \app
 
 %_________________ SITO KWADRATOWE _________________
 \section{Sito kwadratowe}
-
-%---------------------------------------------- OTWARTE PROBLEMY MATEMATYKI ----------------------------------------------
-\chapter{Otwarte problemy matematyki}
 
 %############################################## DODATKI ##############################################
 \begin{appendices}
@@ -348,10 +260,6 @@ Niech $q_0 = \frac{z_0}{m_0}$, wówczas z \textbf{Twierdzenie \ref{podstawowe_po
 %_________________ KONGRUCENCJE _________________
 \section{Kongruencje}
 
-
-%---------------------------------------------- DODATEK ALGORYTMY ----------------------------------------------
-\chapter{Algorytmy}
-
 \end{appendices}
 
 %############################################## BIBLIOGRAFIA ##############################################
@@ -362,8 +270,6 @@ Białynicki-Birula A., Algebra, ISBN: 978-83-01-15817-0
 Mazurkiewicz S., Podstawy rachunku prawdopodobieństwa, Instytut Matematyczny Polskiej Akademii Nauk, Warszawa, 1956, Monografie Matematyczne, Tom 32
 \bibitem{narkiewicz}
 Narkiewicz W., Teoria liczb, ISBN: 83-01-14015-1
-\bibitem{riesel}
-Riesel H., Prime numbers and computer methods for factorization, ISBN: 978-0-8176-8297-2
 \bibitem{sierpinski}
 Sierpiński W., Teoria liczb, Instytut Matematyczny Polskiej Akademii Nauk, Warszawa-Wrocław, 1950, Monografie Matematyczne, Tom 19
 \bibitem{starzynski}
