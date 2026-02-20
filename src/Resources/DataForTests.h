@@ -7,7 +7,6 @@ using namespace std;
 class DataForTests {
 public:
 	static string GetRSASemiPrime(unsigned short numberOfBits);
-	static string GetSafePrime(unsigned short numberOfBits);
 };
 
 #endif
