@@ -20,7 +20,7 @@ $m_3 = \lfloor \sqrt{m_0} \rfloor$\
 wykonuj dla $m_4 = 5$ dopóki $m_4 \leq m_3$ aktualizując co krok $m_4 = m_4 + 4$\
 &emsp;jeśli $m_4 \mid m_0$ to\
 &emsp;&emsp;koniec:&nbsp; $m_1 = m_4$, $m_2 = \frac{m_0}{m_4}$\
-&emsp;$m_4 = m_4 + 2$\
+&emsp; $m_4 = m_4 + 2$\
 &emsp;jeśli $m_4 \mid m_0$ to\
 &emsp;&emsp;koniec:&nbsp; $m_1 = m_4$, $m_2 = \frac{m_0}{m_4}$\
 koniec:&nbsp; $m_1 = 1$, $m_2 = m_0$
@@ -40,9 +40,9 @@ $m_3 = \lceil \sqrt{m_0} \rceil$\
 $n_0 = (m_3)^2 - m_0$\
 $r_0 = \sqrt{n_0}$\
 wykonuj dopóki $r_0 \notin N$\
-&emsp;$n_0 = n_0 + 2m_3 + 1$\
-&emsp;$r_0 = \sqrt{n_0}$\
-&emsp;$m_3 = m_3 + 1$\
+&emsp; $n_0 = n_0 + 2m_3 + 1$\
+&emsp; $r_0 = \sqrt{n_0}$\
+&emsp; $m_3 = m_3 + 1$\
 koniec: $m_1 = m_3 - r_0$, $m_2 = m_3 + r_0$
 
 ### OPIS 
