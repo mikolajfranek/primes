@@ -9,3 +9,8 @@ https://openssl-library.org/source/
 ; make -j$(nproc)
 ; make install
 ; /usr/local/bin/openssl version
+
+;  /usr/local/bin/openssl genrsa -out id_rsa 1024
+; $ /usr/local/bin/openssl genrsa -out id_rsa 102
+Error setting RSA length
+E0340000:error:1C8000AB:Provider routines:rsa_gen_set_params:key size too small:providers/implementations/keymgmt/rsa_kmgmt.c:513:
