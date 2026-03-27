@@ -1,14 +1,11 @@
 https://openssl-library.org/source/
 
-- INSTALACJA
+- INSTALACJA (openssl-3.6 z commita 24.03.2026)
 ; skorzytaj z INSTALL.md
 ; skorzystaj z NOTES-WINDOWS.md
 ; uruchom terminal MSYS2 MINGW64
 ; pacman -S make
-; ./Configure mingw64 no-quic --prefix=/c/openssl-mingw64
-;;; no-quic dodany ze względu na error: 'SIO_UDP_NETRESET' undeclared (wersja 3.5.6)
+; ./Configure mingw64 
 ; make -j$(nproc)
-; make test
 ; make install
-
-LUB sprawdz openssl wersje 3.6.0 
+; /usr/local/bin/openssl version
