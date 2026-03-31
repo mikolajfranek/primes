@@ -1,9 +1,12 @@
 #include "prime.h"
 
 int main() {
-	IFactorization *factorization = new Fermat();
-	factorization->Factor(DataForTests::GetRSASemiPrime(64));
-	factorization->CheckResult(true);
+	IFactorization *factorization = new TrialDivision();
+	RSAKey *rsaKey = DataForTests::GetRSASemiPrime(10);
+	factorization->SetInput(rsaKey->modulus);
+	factorization->Factor();
+	factorization->CheckResult();
+	delete rsaKey;
 	delete factorization;
 	return 0;
 }

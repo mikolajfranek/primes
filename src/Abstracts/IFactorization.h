@@ -6,14 +6,12 @@ using namespace std;
 
 class IFactorization {
 public:
+	mpz_t m0, m1, m2;
 	IFactorization();
 	virtual ~IFactorization();
-	virtual void Factor(string input) = 0;
-	void SetInput(string input);
-	void CheckResult(bool printResult);
-	bool AreFactorsSet();
-	bool AreFactorsTrivial();
-	mpz_t m0, m1, m2;
+	void SetInput(mpz_t input);
+	void CheckResult(bool printResult = false);
+	virtual void Factor() = 0;
 };
 
 #endif

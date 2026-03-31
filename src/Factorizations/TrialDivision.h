@@ -7,7 +7,7 @@ class TrialDivision: public IFactorization {
 public:
 	TrialDivision();
 	virtual ~TrialDivision();
-	void Factor(string input);
+	void Factor();
 };
 
 #endif

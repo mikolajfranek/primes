@@ -7,7 +7,7 @@ class Fermat: public IFactorization {
 public:
 	Fermat();
 	virtual ~Fermat();
-	void Factor(string input);
+	void Factor();
 };
 
 #endif

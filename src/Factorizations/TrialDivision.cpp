@@ -6,10 +6,7 @@ TrialDivision::TrialDivision() {
 TrialDivision::~TrialDivision() {
 }
 
-void TrialDivision::Factor(string input) {
-
-	//parent
-	IFactorization::SetInput(input);
+void TrialDivision::Factor() {
 
 	//declare
 	mpz_t m3, m4, n0;

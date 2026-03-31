@@ -6,10 +6,7 @@ Fermat::Fermat() {
 Fermat::~Fermat() {
 }
 
-void Fermat::Factor(string input) {
-
-	//parent
-	IFactorization::SetInput(input);
+void Fermat::Factor() {
 
 	//declare
 	mpz_t m3, n0, n1, r0;
@@ -18,12 +15,9 @@ void Fermat::Factor(string input) {
 	mpz_inits(m3, n0, n1, r0, NULL);
 
 	//algorithm
-
 	mpz_sqrtrem(m3, n1, this->m0);
 	if (mpz_cmp_ui(n1, 0) != 0) {
 		mpz_add_ui(m3, m3, 1);
-	} else {
-		//???
 	}
 	mpz_pow_ui(n0, m3, 2);
 	mpz_sub(n0, n0, this->m0);
